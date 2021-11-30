@@ -5,21 +5,25 @@ from typing import List
 def payments(values: List[float], func) -> List[float]:
     pay = []
     c = func(values)
+    #
     for i in range(len(values)):
         c1 = func(values)
         # print(c1)
         temp_values = values
         if c[i]:
+            # decrease 0.01 from the price as long as he is still chose
             while c1[i]:
                 temp_values[i] -= 0.01
                 c1 = func(temp_values)
             pay.append(temp_values[i] + 0.01)
         else:
+            # if index not choose the price he need to pay is 0
             pay.append(0)
     pay = ["%.2f" % elem for elem in pay]
     return pay
 
 
+# choose all value that biggest then 10
 def more_then_ten(values: List[float]) -> List[bool]:
     choices = []
     for val in values:
@@ -27,6 +31,7 @@ def more_then_ten(values: List[float]) -> List[bool]:
     return choices
 
 
+# choose the biggest value
 def greedy_a(values: List[float]) -> List[bool]:
     choices = []
     max_value = max(values)
